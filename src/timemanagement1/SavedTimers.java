@@ -19,7 +19,6 @@ import static timemanagement1.AddTimer.Minute;
 import static timemanagement1.AddTimer.Second;
 import static timemanagement1.AddTimer.TimerName;
 import static timemanagement1.AddTimer.timer;
-import static timemanagement1.AddTimer.wert;
 
 /**
  *
@@ -129,6 +128,11 @@ public class SavedTimers extends javax.swing.JFrame {
         timerName.setText("Set Time Interval");
 
         jButton2.setText("Delete Timer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(102, 102, 102));
         jButton6.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -147,7 +151,7 @@ public class SavedTimers extends javax.swing.JFrame {
         Visual.setText("SAVED TIMERS");
 
         timerMin.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
-        timerMin.setText("Set Time Interval");
+        timerMin.setText("----------");
 
         timerMin2.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         timerMin2.setText("Seconds:");
@@ -156,7 +160,7 @@ public class SavedTimers extends javax.swing.JFrame {
         timerMin1.setText("Minutes:");
 
         timerSec.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
-        timerSec.setText("Set Time Interval");
+        timerSec.setText("-----------");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -273,7 +277,6 @@ public class SavedTimers extends javax.swing.JFrame {
                     
                 }
                 sec--;
-                wert.setText(String.valueOf(min) + ":" +String.valueOf(sec));//timemanagement1.MainPage.Timers1.setText(String.valueOf(sec));
                 timemanagement1.MainPage.MainMinute.setText(String.valueOf(min));
                 timemanagement1.MainPage.MainSecond.setText(String.valueOf(sec));
             }
@@ -297,6 +300,16 @@ public class SavedTimers extends javax.swing.JFrame {
         timerSec.setText(second);
         
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try{
+          int row = jTable1.getSelectedRow();
+        String name = jTable1.getValueAt(row, 0).toString();
+        TimeManagement1.DatabaseDelete(name);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Please Select a row first!");
+                }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

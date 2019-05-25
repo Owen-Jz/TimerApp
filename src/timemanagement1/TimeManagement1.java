@@ -46,31 +46,26 @@ public class TimeManagement1 {
     
     //Function called when an alarm is called off
     public static void PromptMessage(String mssg) {
-        TimerTask task = new TimerTask() {
-            public void run() {
                 ShowMessage obj = new ShowMessage();
                 timemanagement1.ShowMessage.Message.setText(mssg);
                 obj.setVisible(true);
             }
-        };
-        //Timer timer = new Timer("Timer");
-
-        long delay = 10000;
-        //timer.schedule(task, delay);
-        }
   
     
     public static void startPeriodtimer(){
         timerss = new Timer(1000, new ActionListener(){
+            
             @Override
             public void actionPerformed(ActionEvent e) {
+                timemanagement1.MainPage.MainHead.setText("School Session Timer currently running");
                     if(sec == 0){ 
                     sec = 60;
                     min--;
                 }
-                if(min<0){
-                    timemanagement1.TimeManagement1.playAlarmSound("C:\\Users\\USER\\Desktop\\TimeManagement1\\bellAlarm.wav");
+                if(min == 0){
                     min=0;sec=0;
+                    timemanagement1.MainPage.PeriodTimer1.setText(String.valueOf(min));
+                    timemanagement1.MainPage.PeriodTimer2.setText(String.valueOf(min));
                     timerss.stop();  
                 }
                 sec--;
@@ -80,53 +75,67 @@ public class TimeManagement1 {
         });
         timerss.start();
     }
-    
-    public static boolean contains(final int[] array, final int key) {
-    for (final int i : array) {
-        if (i == key) {
-            return true;
-        }
-    }
-    return false;
-}
+
     
     //Main function to check if time limits have been reached
-    public static void RingIntervals(int hour, int min, int sec){
+    public static void RingIntervals(int hour, int min, int sec, int millisec){
                             //Loop to check for the next period
                     int[] nums = { 8, 9, 10, 11, 12, 1, 2, 3,4,5,6};
                     String soundPath = "C:\\Users\\USER\\Desktop\\TimeManagement1\\bellAlarm.wav";
                         //Alarm for when period is over
-                        
-                        if (min == 41 && contains(nums, hour) && sec == 0){
-                            MainPage.button1.doClick();
+                        for(int i = 0; i < nums.length; i++){
 
+                            if (min == 38 && hour == i && sec == 0 && millisec == 0 ){
+                                startPeriodtimer();
+                                playAlarmSound(soundPath);
+                            }
+                            //Alarm for when period is over
+                            if (min == 50 && hour == i && sec == 0  && millisec == 0){
+                                PromptMessage("Period Over, Next Class");
+                                playAlarmSound(soundPath);
+                            }
+                            //Alarm for when period is over
+                            if (min == 30 && hour == i && sec == 0  && millisec == 0){
+                                startPeriodtimer();
+                                PromptMessage("Period Over, Next Class");
+                                playAlarmSound(soundPath);
+                            }
                             
-                        }
-                        //Alarm for when period is over
-                        if (min == 10 && contains(nums, hour) && sec == 0){
-                            startPeriodtimer();
-                            PromptMessage("Period Over, Next Class");
+                            if (min == 30 && hour == i && sec == 0  && millisec == 0){
+                                startPeriodtimer();
+                                PromptMessage("Period Over, Next Class");
+                                playAlarmSound(soundPath);
+                            }
+                            
+                            if (min == 30 && hour == 11  && sec == 0  && millisec == 0){
+                                continue;
+                            }
+                            
+                            if (min == 40 && hour == 11  && sec == 0  && millisec == 0){
+                                continue;
+                            }
+                            if (min == 40 && hour == 1  && sec == 0  && millisec == 0){
+                                continue;
+                            }
+                            
+                            if (min == 10 && hour == 2  && sec == 0  && millisec == 0){
+                                continue;
+                            }
+
+
+                        //Alarm for when break time is starting
+                        if (hour == 11 && min == 20 && sec == 0  && millisec == 0){
+                            PromptMessage("Break Time, 20 minutes remaining");
                             playAlarmSound(soundPath);
-                            
+
                         }
-                        //Alarm for when period is over
-                        if (min == 0 && contains(nums, hour) && sec == 0){
-                            startPeriodtimer();
-                            PromptMessage("Period Over, Next Class");
+                        //Alarm for when break time is ending
+                        if (hour == 11 && min == 40 && sec == 0  && millisec == 0){
+                            PromptMessage("Break Time Over");
                             playAlarmSound(soundPath);
-                            
-                        }
-                    //Alarm for when break time is starting
-                    if (hour == 11 && min == 20 && sec == 0){
-                        PromptMessage("Break Time, 20 minutes remaining");
-                        playAlarmSound(soundPath);
+                        }                        
                         
-                    }
-                    //Alarm for when break time is ending
-                    if (hour == 11 && min == 40){
-                        PromptMessage("Break Time Over");
-                        playAlarmSound(soundPath);
-                    }
+                        }
                   
     }
 
@@ -138,6 +147,26 @@ public class TimeManagement1 {
    //Function to get the current time from the system
 
     
+        public static void RingIntervalsStarter(){
+        int TimeRun = 0;
+            new Thread(){
+            String prime;
+            public void run(){
+                while(TimeRun == 0){
+                    
+                    Calendar cal = new GregorianCalendar();
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int millisec = cal.get(Calendar.MILLISECOND);
+                    RingIntervals(hour, min, sec, millisec);
+                }
+            }
+        }.start();
+            
+    }
+    
+    
     public static void GetCurrentTime(JLabel Panel){
         int TimeRun = 0;
             new Thread(){
@@ -145,10 +174,12 @@ public class TimeManagement1 {
             public void run(){
                 //Loop to continuoisly run to ensure correct time
                 while(TimeRun == 0){
+                    
                     Calendar cal = new GregorianCalendar();
                     int hour = cal.get(Calendar.HOUR);
                     int min = cal.get(Calendar.MINUTE);
                     int sec = cal.get(Calendar.SECOND);
+                    int millisec = cal.get(Calendar.MILLISECOND);
                     int AMPM = cal.get(Calendar.AM_PM);
                     if(AMPM == 1){
                         prime = "PM";
@@ -157,7 +188,6 @@ public class TimeManagement1 {
                     }
                     String time = String.valueOf(hour)+" : "+String.valueOf(min)+" :  "+String.valueOf(sec) +": "+ prime;
                     Panel.setText(time);
-                    RingIntervals(hour, min, sec);
                 }
             }
         }.start();
@@ -209,6 +239,26 @@ public class TimeManagement1 {
          }
 
     };   
+    
+    
+    public static void DatabaseDelete(String name){
+        Connection con;
+        ResultSet rs;
+        Statement st;
+        try{
+             Class.forName("org.sqlite.JDBC");
+             con = DriverManager.getConnection("jdbc:sqlite:TimerSettings.db3");
+             st = con.createStatement();
+             String query = ("DELETEFROM TIMERDETAILS WHERE name = "+name);
+             st.executeQuery(query);
+            System.out.println("Successfull");
+         }catch(ClassNotFoundException | SQLException e){
+             System.out.println("The error is : "+e);
+         }
+
+    };   
+
+  
 
   
     
