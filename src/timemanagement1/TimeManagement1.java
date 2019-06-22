@@ -16,8 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.TimerTask;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -37,116 +37,118 @@ public class TimeManagement1 {
 
     public static boolean check = false;
     public static Timer timerss;
-            public static int sec = 60;
-            public static int min = 40;
+
     //Automatically starts to generate new time and updates regularly
     public static void RunningApp(){  
         String run = timemanagement1.MainPage.Timers2.getText();
     }
     
-    //Function called when an alarm is called off
-    public static void PromptMessage(String mssg) {
-                ShowMessage obj = new ShowMessage();
-                timemanagement1.ShowMessage.Message.setText(mssg);
-                obj.setVisible(true);
-            }
-  
     
-    public static void startPeriodtimer(){
+    public static void startPeriodtimer(int min, int sec){
         timerss = new Timer(1000, new ActionListener(){
-            
+        int tmin = min;
+        int tsec = sec;
             @Override
             public void actionPerformed(ActionEvent e) {
                 timemanagement1.MainPage.MainHead.setText("School Session Timer currently running");
-                    if(sec == 0){ 
-                    sec = 60;
-                    min--;
+                    if(tsec == 0){ 
+                    tsec = 60;
+                    tmin--;
                 }
                 if(min == 0){
-                    min=0;sec=0;
-                    timemanagement1.MainPage.PeriodTimer1.setText(String.valueOf(min));
-                    timemanagement1.MainPage.PeriodTimer2.setText(String.valueOf(min));
+                    tmin=0;tsec=0;
+                    timemanagement1.MainPage.PeriodTimer1.setText(String.valueOf(00));
+                    timemanagement1.MainPage.PeriodTimer2.setText(String.valueOf(00));
                     timerss.stop();  
                 }
-                sec--;
-                timemanagement1.MainPage.PeriodTimer1.setText(String.valueOf(min));
-                timemanagement1.MainPage.PeriodTimer2.setText(String.valueOf(sec));
+                tsec--;
+                timemanagement1.MainPage.PeriodTimer1.setText(String.valueOf(tmin));
+                timemanagement1.MainPage.PeriodTimer2.setText(String.valueOf(tsec));
+                timemanagement1.Minimized.PeriodTimer1.setText(String.valueOf(tmin));
+                timemanagement1.Minimized.PeriodTimer2.setText(String.valueOf(tsec));
+
             }
         });
+        timerss.stop();
+        timemanagement1.MainPage.PeriodTimer1.setText("00");
+        timemanagement1.MainPage.PeriodTimer2.setText("00");
         timerss.start();
     }
 
     
     //Main function to check if time limits have been reached
     public static void RingIntervals(int hour, int min, int sec, int millisec){
-                            //Loop to check for the next period
-                    int[] nums = { 8, 9, 10, 11, 12, 1, 2, 3,4,5,6};
-                    String soundPath = "C:\\Users\\USER\\Desktop\\TimeManagement1\\bellAlarm.wav";
-                        //Alarm for when period is over
-                        for(int i = 0; i < nums.length; i++){
+                     //Loop to check for the next period
+                    String soundPath = "C:\\Users\\USER\\Desktop\\TimerApp\\src\\timemanagement1\\Music\\bellAlarm.wav";
+                    //Alarm for when period is over
+                    if (hour == 11 && min == 47 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 8 && min == 40 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 9 && min == 20 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 10 && min == 00 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 10 && min == 40 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 12 && min == 20 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 5 && min == 00 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 1 && min == 40 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 2 && min == 10 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 2 && min == 50 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
 
-                            if (min == 38 && hour == i && sec == 0 && millisec == 0 ){
-                                startPeriodtimer();
-                                playAlarmSound(soundPath);
-                            }
-                            //Alarm for when period is over
-                            if (min == 50 && hour == i && sec == 0  && millisec == 0){
-                                PromptMessage("Period Over, Next Class");
-                                playAlarmSound(soundPath);
-                            }
-                            //Alarm for when period is over
-                            if (min == 30 && hour == i && sec == 0  && millisec == 0){
-                                startPeriodtimer();
-                                PromptMessage("Period Over, Next Class");
-                                playAlarmSound(soundPath);
-                            }
-                            
-                            if (min == 30 && hour == i && sec == 0  && millisec == 0){
-                                startPeriodtimer();
-                                PromptMessage("Period Over, Next Class");
-                                playAlarmSound(soundPath);
-                            }
-                            
-                            if (min == 30 && hour == 11  && sec == 0  && millisec == 0){
-                                continue;
-                            }
-                            
-                            if (min == 40 && hour == 11  && sec == 0  && millisec == 0){
-                                continue;
-                            }
-                            if (min == 40 && hour == 1  && sec == 0  && millisec == 0){
-                                continue;
-                            }
-                            
-                            if (min == 10 && hour == 2  && sec == 0  && millisec == 0){
-                                continue;
-                            }
-
-
-                        //Alarm for when break time is starting
-                        if (hour == 11 && min == 20 && sec == 0  && millisec == 0){
-                            PromptMessage("Break Time, 20 minutes remaining");
-                            playAlarmSound(soundPath);
-
-                        }
-                        //Alarm for when break time is ending
-                        if (hour == 11 && min == 40 && sec == 0  && millisec == 0){
-                            PromptMessage("Break Time Over");
-                            playAlarmSound(soundPath);
-                        }                        
-                        
-                        }
+                    
+                    //Special cases
+                    if (hour == 11 && min == 20 && sec == 0  && millisec == 0){
+                        startPeriodtimer(20, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 11 && min == 40 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 1 && min == 40 && sec == 0  && millisec == 0){
+                        startPeriodtimer(30, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 2 && min == 10 && sec == 0  && millisec == 0){
+                        startPeriodtimer(40, 00);
+                        playAlarmSound(soundPath);
+                    }
+                    if (hour == 3 && min == 30 && sec == 0  && millisec == 0){
+                        playAlarmSound(soundPath);
+                        JOptionPane.showMessageDialog(null,"Break time");
+                    }
+                   
                   
     }
-
-    
-
-  
-    
     
    //Function to get the current time from the system
-
-    
         public static void RingIntervalsStarter(){
         int TimeRun = 0;
             new Thread(){
