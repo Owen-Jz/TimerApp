@@ -39,10 +39,6 @@ public class TimeManagement1 {
     public static Timer timerss;
 
     //Automatically starts to generate new time and updates regularly
-    public static void RunningApp(){  
-        String run = timemanagement1.MainPage.Timers2.getText();
-    }
-    
     
     public static void startPeriodtimer(int min, int sec){
         timerss = new Timer(1000, new ActionListener(){
@@ -50,28 +46,26 @@ public class TimeManagement1 {
         int tsec = sec;
             @Override
             public void actionPerformed(ActionEvent e) {
-                timemanagement1.MainPage.MainHead.setText("School Session Timer currently running");
+                MainPage.MainHead.setText("School Session Timer currently running");
+                MainPage.MainHead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/timemanagement1/tiny Pics/pic22.png")));
                     if(tsec == 0){ 
                     tsec = 60;
                     tmin--;
                 }
-                if(min == 0){
+                if(tmin < 0){
+                    MainPage.PeriodTimer1.setText("00");
+                    MainPage.PeriodTimer2.setText("00");
                     tmin=0;tsec=0;
-                    timemanagement1.MainPage.PeriodTimer1.setText(String.valueOf(00));
-                    timemanagement1.MainPage.PeriodTimer2.setText(String.valueOf(00));
-                    timerss.stop();  
+                    timerss.stop();
                 }
                 tsec--;
-                timemanagement1.MainPage.PeriodTimer1.setText(String.valueOf(tmin));
-                timemanagement1.MainPage.PeriodTimer2.setText(String.valueOf(tsec));
-                timemanagement1.Minimized.PeriodTimer1.setText(String.valueOf(tmin));
-                timemanagement1.Minimized.PeriodTimer2.setText(String.valueOf(tsec));
+                MainPage.PeriodTimer1.setText(String.valueOf(tmin));
+                MainPage.PeriodTimer2.setText(String.valueOf(tsec));
 
             }
         });
-        timerss.stop();
-        timemanagement1.MainPage.PeriodTimer1.setText("00");
-        timemanagement1.MainPage.PeriodTimer2.setText("00");
+        MainPage.PeriodTimer1.setText("00");
+        MainPage.PeriodTimer2.setText("00");
         timerss.start();
     }
 
@@ -79,9 +73,9 @@ public class TimeManagement1 {
     //Main function to check if time limits have been reached
     public static void RingIntervals(int hour, int min, int sec, int millisec){
                      //Loop to check for the next period
-                    String soundPath = "C:\\Users\\USER\\Desktop\\TimerApp\\src\\timemanagement1\\Music\\bellAlarm.wav";
+                    String soundPath = "bellAlarm.wav";
                     //Alarm for when period is over
-                    if (hour == 11 && min == 47 && sec == 0  && millisec == 0){
+                    if (hour == 8 && min == 00 && sec == 0  && millisec == 0){
                         startPeriodtimer(40, 00);
                         playAlarmSound(soundPath);
                     }
@@ -152,7 +146,6 @@ public class TimeManagement1 {
         public static void RingIntervalsStarter(){
         int TimeRun = 0;
             new Thread(){
-            String prime;
             public void run(){
                 while(TimeRun == 0){
                     
@@ -175,13 +168,11 @@ public class TimeManagement1 {
             String prime;
             public void run(){
                 //Loop to continuoisly run to ensure correct time
-                while(TimeRun == 0){
-                    
+                while(TimeRun == 0){         
                     Calendar cal = new GregorianCalendar();
                     int hour = cal.get(Calendar.HOUR);
                     int min = cal.get(Calendar.MINUTE);
                     int sec = cal.get(Calendar.SECOND);
-                    int millisec = cal.get(Calendar.MILLISECOND);
                     int AMPM = cal.get(Calendar.AM_PM);
                     if(AMPM == 1){
                         prime = "PM";
@@ -232,12 +223,9 @@ public class TimeManagement1 {
              con = DriverManager.getConnection("jdbc:sqlite:TimerSettings.db3");
              st = con.createStatement();
              String query = "INSERT INTO TimerDetails(name, minutes, seconds) "+("VALUES ('"+name+"','"+minute+"','"+Second+"' )");
-             System.out.println("\n \n \n Its Done");
-             System.out.println(query);
              st.executeUpdate(query);
-            System.out.println("Successfull");
          }catch(ClassNotFoundException | SQLException e){
-             System.out.println("The error is : "+e);
+             JOptionPane.showMessageDialog(null, "Database Error Ocurred");
          }
 
     };   
@@ -251,11 +239,10 @@ public class TimeManagement1 {
              Class.forName("org.sqlite.JDBC");
              con = DriverManager.getConnection("jdbc:sqlite:TimerSettings.db3");
              st = con.createStatement();
-             String query = ("DELETEFROM TIMERDETAILS WHERE name = "+name);
+             String query = ("DELETE FROM TIMERDETAILS WHERE name = "+name);
              st.executeQuery(query);
-            System.out.println("Successfull");
          }catch(ClassNotFoundException | SQLException e){
-             System.out.println("The error is : "+e);
+             JOptionPane.showMessageDialog(null, "Database Error Ocurred");
          }
 
     };   

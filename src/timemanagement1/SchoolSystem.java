@@ -27,7 +27,10 @@ public class SchoolSystem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel14 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        Visual = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -40,20 +43,36 @@ public class SchoolSystem extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        Visual = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel14.setText("School System automatically starts when opening time is");
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 3, true));
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel22.setText("And Alarm goes off signifing the end of one period");
+
+        Visual.setBackground(new java.awt.Color(204, 204, 204));
+        Visual.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
+        Visual.setForeground(new java.awt.Color(0, 0, 0));
+        Visual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Visual.setText("SCHOOL SYSTEM OPERATION");
+
+        jButton6.setBackground(new java.awt.Color(102, 102, 102));
+        jButton6.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("X");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel18.setText("Reached and automatically stops when school dismisses");
+        jLabel18.setText("reached and automatically stops when school stops at school over");
 
         jLabel29.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(51, 51, 51));
@@ -73,7 +92,7 @@ public class SchoolSystem extends javax.swing.JFrame {
 
         jLabel33.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel33.setText("8:10 AM");
+        jLabel33.setText("8:00 AM");
 
         jLabel34.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(51, 51, 51));
@@ -153,72 +172,68 @@ public class SchoolSystem extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel22.setText("And Alarm goes off signifing the end of one period");
+        jLabel14.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel14.setText("Period timer automatically starts when opening time is");
 
-        Visual.setBackground(new java.awt.Color(204, 204, 204));
-        Visual.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
-        Visual.setForeground(new java.awt.Color(0, 0, 0));
-        Visual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Visual.setText("SCHOOL SYSTEM OPERATION");
-
-        jButton6.setBackground(new java.awt.Color(102, 102, 102));
-        jButton6.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("X");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(119, 119, 119)
-                            .addComponent(Visual, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel18)
+                        .addGap(0, 22, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(Visual, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(153, 153, 153)
+                                .addComponent(jButton6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(58, 58, 58))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)))))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(Visual, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Visual, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -282,6 +297,7 @@ public class SchoolSystem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

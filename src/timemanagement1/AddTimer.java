@@ -21,10 +21,7 @@ public class AddTimer extends javax.swing.JFrame {
      */
         int min; int sec;
         int periodMin; int periodSec;
-        public static boolean checker = true;
     public static Timer timer;
-    public static Timer timer2;
-    //Integer.parseInt(Second.getSelectedItem().toString());
     public AddTimer() {
         initComponents();
     }
@@ -227,11 +224,11 @@ public class AddTimer extends javax.swing.JFrame {
         min = Integer.parseInt(Minute.getSelectedItem().toString());
         int mainmin = Integer.parseInt(MainPage.MainMinute.getText());
         int mainsec = Integer.parseInt(MainPage.MainMinute.getText());
+        MainPage.Timers2.setText(name);
         if (mainmin == 0 && mainsec == 0){
-            if (min != 0){
+            if (min != 0 && sec !=0){
                 if (name.isEmpty() == false){
                     JOptionPane.showMessageDialog(rootPane, "The timer has started!");
-                    timemanagement1.MainPage.Timers2.setText(name);
                     timer = new Timer(1000, new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -241,14 +238,14 @@ public class AddTimer extends javax.swing.JFrame {
                             min--;
                         }
                         if(min<0){
-                            timemanagement1.TimeManagement1.playAlarmSound("C:\\Users\\USER\\Desktop\\TimerApp\\src\\timemanagement1\\Music\\bellAlarm.wav");
+                            TimeManagement1.playAlarmSound("bellAlarm.wav");
                             JOptionPane.showMessageDialog(null, name+ "\n"+ "Time Expended");
                             min=0;sec=0;
                             timer.stop();  
                         }
                         sec--;
-                        timemanagement1.MainPage.MainMinute.setText(String.valueOf(min));
-                        timemanagement1.MainPage.MainSecond.setText(String.valueOf(sec));
+                        MainPage.MainMinute.setText(String.valueOf(min));
+                        MainPage.MainSecond.setText(String.valueOf(sec));
                     }
                     });
                     timer.start();
@@ -256,7 +253,7 @@ public class AddTimer extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Please specify name of timer");
                 }
             }else{
-                JOptionPane.showMessageDialog(rootPane, "The minute cannot be zero");
+                JOptionPane.showMessageDialog(rootPane, "You did not specify the timer interval");
             }
         }else{
          JOptionPane.showMessageDialog(rootPane, "There is a timer already running \n Stop it, in order to run another");
@@ -279,7 +276,7 @@ public class AddTimer extends javax.swing.JFrame {
         min = Integer.parseInt(Minute.getSelectedItem().toString());
         String name = TimerName.getText();
         try{
-            timemanagement1.TimeManagement1.DatabaseWork(name, min, sec);
+            TimeManagement1.DatabaseWork(name, min, sec);
             JOptionPane.showMessageDialog(rootPane, "Information Successfully Saved");
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "One of the fields are not filled completely");
